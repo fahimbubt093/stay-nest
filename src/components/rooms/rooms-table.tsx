@@ -5,8 +5,8 @@ import Link from "next/link";
 import {
   type Room,
   type RoomStatus,
-} from "@/src/components/rooms/room-data";
-import { RoomStatusBadge } from "@/src/components/rooms/room-status-badge";
+} from "@/components/rooms/room-data";
+import { RoomStatusBadge } from "@/components/rooms/room-status-badge";
 
 type RoomsTableProps = {
   rooms: Room[];
@@ -147,7 +147,7 @@ export function RoomsTable({ rooms, onDelete, onEdit }: RoomsTableProps) {
                   >
                     <Link
                       className="rounded-sm text-blue-700 hover:text-blue-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                      href={`/rooms/${encodeURIComponent(room.roomNumber)}`}
+                      href={`/frontend/rooms/${encodeURIComponent(room.roomNumber)}`}
                     >
                       {room.roomNumber}
                     </Link>
@@ -169,7 +169,7 @@ export function RoomsTable({ rooms, onDelete, onEdit }: RoomsTableProps) {
                       <Link
                         aria-label={`View room ${room.roomNumber}`}
                         className="rounded-lg px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                        href={`/rooms/${encodeURIComponent(room.roomNumber)}`}
+                        href={`/frontend/rooms/${encodeURIComponent(room.roomNumber)}`}
                       >
                         View
                       </Link>

@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import type {
   Customer,
   NewCustomer,
-} from "@/src/components/customers/customer-data";
+} from "@/components/customers/customer-data";
 
 type AddCustomerFormProps = {
   initialCustomer?: Customer;

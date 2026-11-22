@@ -1,7 +1,7 @@
 import {
   formatReportCurrency,
   type MonthlyRevenue,
-} from "@/src/components/reports/report-data";
+} from "@/components/reports/report-data";
 
 type MonthlyRevenueChartProps = {
   monthlyRevenue: MonthlyRevenue[];

@@ -10,7 +10,7 @@ import {
   type Booking,
   type NewBooking,
   sampleBookings,
-} from "@/src/components/bookings/booking-data";
+} from "@/components/bookings/booking-data";
 
 type BookingContextValue = {
   bookings: Booking[];

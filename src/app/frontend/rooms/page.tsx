@@ -1,6 +1,6 @@
-import { DashboardMobileNavigation } from "@/src/components/dashboard/dashboard-mobile-navigation";
-import { DashboardSidebar } from "@/src/components/dashboard/dashboard-sidebar";
-import { RoomManagement } from "@/src/components/rooms/RoomManagement";
+import { DashboardMobileNavigation } from "@/components/dashboard/dashboard-mobile-navigation";
+import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
+import { RoomManagement } from "@/components/rooms/RoomManagement";
 
 export default function RoomsPage() {
   return (

@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { DashboardMobileNavigation } from "@/src/components/dashboard/dashboard-mobile-navigation";
-import { DashboardSidebar } from "@/src/components/dashboard/dashboard-sidebar";
-import { RoomDetails } from "@/src/components/rooms/RoomDetails";
-import { sampleRooms } from "@/src/components/rooms/room-data";
+import { DashboardMobileNavigation } from "@/components/dashboard/dashboard-mobile-navigation";
+import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
+import { RoomDetails } from "@/components/rooms/RoomDetails";
+import { sampleRooms } from "@/components/rooms/room-data";
 
 export function generateStaticParams() {
   return sampleRooms.map((room) => ({ id: room.roomNumber }));
@@ -24,7 +24,9 @@ async function RoomDetailsContent({
   return <RoomDetails key={room.roomNumber} room={room} />;
 }
 
-export default function RoomDetailsPage(props: PageProps<"/rooms/[id]">) {
+export default function RoomDetailsPage(
+  props: PageProps<"/frontend/rooms/[id]">,
+) {
   return (
     <div className="flex min-h-screen w-full bg-slate-50 text-slate-900">
       <DashboardSidebar />

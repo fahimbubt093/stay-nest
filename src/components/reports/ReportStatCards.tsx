@@ -1,4 +1,4 @@
-import { formatReportCurrency } from "@/src/components/reports/report-data";
+import { formatReportCurrency } from "@/components/reports/report-data";
 
 type ReportStatCardsProps = {
   totalRevenue: number;

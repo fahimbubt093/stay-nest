@@ -1,10 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { BookingStatusStats } from "@/src/components/reports/BookingStatusStats";
-import { DateRangeFilter } from "@/src/components/reports/DateRangeFilter";
-import { MonthlyRevenueChart } from "@/src/components/reports/MonthlyRevenueChart";
-import { ReportStatCards } from "@/src/components/reports/ReportStatCards";
+import { BookingStatusStats } from "@/components/reports/BookingStatusStats";
+import { DateRangeFilter } from "@/components/reports/DateRangeFilter";
+import { MonthlyRevenueChart } from "@/components/reports/MonthlyRevenueChart";
+import { ReportStatCards } from "@/components/reports/ReportStatCards";
 import {
   bookingReportEntries,
   bookingStatuses,
@@ -12,7 +12,7 @@ import {
   reportEndDate,
   reportStartDate,
   revenueEntries,
-} from "@/src/components/reports/report-data";
+} from "@/components/reports/report-data";
 
 export function ReportsManagement() {
   const [startDate, setStartDate] = useState(reportStartDate);

@@ -1,4 +1,4 @@
-import type { BookingStatus } from "@/src/components/bookings/booking-data";
+import type { BookingStatus } from "@/components/bookings/booking-data";
 
 type BookingStatusBadgeProps = {
   status: BookingStatus;

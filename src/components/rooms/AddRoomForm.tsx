@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import type { Room, RoomStatus } from "@/src/components/rooms/room-data";
+import type { Room, RoomStatus } from "@/components/rooms/room-data";
 
 export type NewRoom = Room;
 

@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { PaymentPageHeader } from "@/src/components/payments/PaymentPageHeader";
-import { PaymentsTable } from "@/src/components/payments/PaymentsTable";
-import { RecordPaymentForm } from "@/src/components/payments/RecordPaymentForm";
-import { usePayments } from "@/src/components/payments/PaymentProvider";
-import type { NewPayment } from "@/src/components/payments/payment-data";
+import { PaymentPageHeader } from "@/components/payments/PaymentPageHeader";
+import { PaymentsTable } from "@/components/payments/PaymentsTable";
+import { RecordPaymentForm } from "@/components/payments/RecordPaymentForm";
+import { usePayments } from "@/components/payments/PaymentProvider";
+import type { NewPayment } from "@/components/payments/payment-data";
 
 export function PaymentManagement() {
   const { addPayment, payments } = usePayments();

@@ -1,4 +1,4 @@
-import type { Booking } from "@/src/components/bookings/booking-data";
+import type { Booking } from "@/components/bookings/booking-data";
 
 type CancelBookingDialogProps = {
   booking: Booking;

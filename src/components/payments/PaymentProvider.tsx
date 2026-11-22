@@ -10,7 +10,7 @@ import {
   type NewPayment,
   type Payment,
   samplePayments,
-} from "@/src/components/payments/payment-data";
+} from "@/components/payments/payment-data";
 
 type PaymentContextValue = {
   payments: Payment[];

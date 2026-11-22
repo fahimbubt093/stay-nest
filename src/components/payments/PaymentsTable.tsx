@@ -2,13 +2,13 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { PaymentStatusBadge } from "@/src/components/payments/PaymentStatusBadge";
+import { PaymentStatusBadge } from "@/components/payments/PaymentStatusBadge";
 import {
   formatPaymentAmount,
   formatPaymentDate,
   type Payment,
   type PaymentStatus,
-} from "@/src/components/payments/payment-data";
+} from "@/components/payments/payment-data";
 
 type PaymentsTableProps = {
   payments: Payment[];
@@ -182,7 +182,7 @@ export function PaymentsTable({ payments }: PaymentsTableProps) {
                   <td className="px-5 py-4 text-right sm:px-6">
                     <Link
                       className="inline-flex min-h-9 items-center justify-center rounded-lg border border-blue-100 bg-blue-50 px-3 text-sm font-semibold text-blue-700 transition hover:border-blue-200 hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                      href={`/payments/${encodeURIComponent(payment.id)}`}
+                      href={`/frontend/payments/${encodeURIComponent(payment.id)}`}
                     >
                       View Details
                     </Link>

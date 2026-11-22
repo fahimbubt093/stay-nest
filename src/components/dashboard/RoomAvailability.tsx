@@ -1,7 +1,7 @@
 import {
   sampleRoomAvailability,
   type RoomAvailabilityData,
-} from "@/src/components/dashboard/room-availability-data";
+} from "@/components/dashboard/room-availability-data";
 
 type RoomAvailabilityProps = {
   availability?: RoomAvailabilityData;

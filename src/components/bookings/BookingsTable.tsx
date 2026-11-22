@@ -5,8 +5,8 @@ import {
   type Booking,
   type BookingStatus,
   formatBookingDate,
-} from "@/src/components/bookings/booking-data";
-import { BookingStatusBadge } from "@/src/components/bookings/BookingStatusBadge";
+} from "@/components/bookings/booking-data";
+import { BookingStatusBadge } from "@/components/bookings/BookingStatusBadge";
 import Link from "next/link";
 
 type BookingsTableProps = {
@@ -146,7 +146,7 @@ export function BookingsTable({ bookings }: BookingsTableProps) {
                   >
                     <Link
                       className="rounded-sm text-blue-700 hover:text-blue-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                      href={`/bookings/${encodeURIComponent(booking.id)}`}
+                      href={`/frontend/bookings/${encodeURIComponent(booking.id)}`}
                     >
                       {booking.id}
                     </Link>

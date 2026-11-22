@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { SettingsForm } from "@/src/components/settings/SettingsForm";
+import { SettingsForm } from "@/components/settings/SettingsForm";
 import {
   initialHotelSettings,
   type HotelSettings,
-} from "@/src/components/settings/settings-data";
+} from "@/components/settings/settings-data";
 
 export function SettingsManagement() {
   const [savedSettings, setSavedSettings] =

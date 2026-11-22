@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePayments } from "@/src/components/payments/PaymentProvider";
-import { PaymentStatusBadge } from "@/src/components/payments/PaymentStatusBadge";
+import { usePayments } from "@/components/payments/PaymentProvider";
+import { PaymentStatusBadge } from "@/components/payments/PaymentStatusBadge";
 import {
   formatPaymentAmount,
   formatPaymentDate,
-} from "@/src/components/payments/payment-data";
+} from "@/components/payments/payment-data";
 
 type PaymentDetailsProps = {
   paymentId: string;
@@ -24,7 +24,7 @@ export function PaymentDetails({ paymentId }: PaymentDetailsProps) {
         </h1>
         <Link
           className="mt-5 inline-flex min-h-11 items-center rounded-xl bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          href="/payments"
+          href="/frontend/payments"
         >
           Back to Payments
         </Link>
@@ -48,7 +48,7 @@ export function PaymentDetails({ paymentId }: PaymentDetailsProps) {
         </div>
         <Link
           className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          href="/payments"
+          href="/frontend/payments"
         >
           Back to Payments
         </Link>
@@ -85,7 +85,7 @@ export function PaymentDetails({ paymentId }: PaymentDetailsProps) {
             </dd>
             <Link
               className="mt-2 inline-flex text-sm font-semibold text-blue-700 hover:text-blue-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-              href={`/customers/${encodeURIComponent(payment.customerId)}`}
+              href={`/frontend/customers/${encodeURIComponent(payment.customerId)}`}
             >
               View Customer
             </Link>
@@ -97,7 +97,7 @@ export function PaymentDetails({ paymentId }: PaymentDetailsProps) {
             </dd>
             <Link
               className="mt-2 inline-flex text-sm font-semibold text-blue-700 hover:text-blue-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-              href={`/bookings/${encodeURIComponent(payment.bookingId)}`}
+              href={`/frontend/bookings/${encodeURIComponent(payment.bookingId)}`}
             >
               View Booking
             </Link>

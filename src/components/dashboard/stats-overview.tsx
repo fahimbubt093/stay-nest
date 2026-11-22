@@ -1,4 +1,4 @@
-import { StatCard } from "@/src/components/dashboard/stat-card";
+import { StatCard } from "@/components/dashboard/stat-card";
 
 const stats = [
   {

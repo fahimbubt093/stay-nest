@@ -1,6 +1,6 @@
-import { CustomerManagement } from "@/src/components/customers/CustomerManagement";
-import { DashboardMobileNavigation } from "@/src/components/dashboard/dashboard-mobile-navigation";
-import { DashboardSidebar } from "@/src/components/dashboard/dashboard-sidebar";
+import { CustomerManagement } from "@/components/customers/CustomerManagement";
+import { DashboardMobileNavigation } from "@/components/dashboard/dashboard-mobile-navigation";
+import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
 
 export default function CustomersPage() {
   return (

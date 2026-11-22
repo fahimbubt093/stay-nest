@@ -1,9 +1,9 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { HotelProfileFields } from "@/src/components/settings/HotelProfileFields";
-import { SystemPreferences } from "@/src/components/settings/SystemPreferences";
-import type { HotelSettings } from "@/src/components/settings/settings-data";
+import { HotelProfileFields } from "@/components/settings/HotelProfileFields";
+import { SystemPreferences } from "@/components/settings/SystemPreferences";
+import type { HotelSettings } from "@/components/settings/settings-data";
 
 type SettingsFormProps = {
   settings: HotelSettings;

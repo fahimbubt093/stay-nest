@@ -1,4 +1,4 @@
-import { sampleBookings } from "@/src/components/bookings/booking-data";
+import { sampleBookings } from "@/components/bookings/booking-data";
 
 export type Customer = {
   id: string;

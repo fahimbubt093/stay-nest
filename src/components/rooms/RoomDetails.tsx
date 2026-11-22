@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { RoomFormDialog } from "@/src/components/rooms/RoomFormDialog";
-import { sampleRooms, type Room } from "@/src/components/rooms/room-data";
-import { RoomStatusBadge } from "@/src/components/rooms/room-status-badge";
+import { RoomFormDialog } from "@/components/rooms/RoomFormDialog";
+import { sampleRooms, type Room } from "@/components/rooms/room-data";
+import { RoomStatusBadge } from "@/components/rooms/room-status-badge";
 
 type RoomDetailsProps = {
   room: Room;
@@ -43,7 +43,7 @@ export function RoomDetails({ room: initialRoom }: RoomDetailsProps) {
         <div className="flex flex-col gap-3 sm:flex-row">
           <Link
             className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-            href="/rooms"
+            href="/frontend/rooms"
           >
             Back to Rooms
           </Link>

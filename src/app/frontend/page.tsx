@@ -1,9 +1,9 @@
-import { RoomAvailability } from "@/src/components/dashboard/RoomAvailability";
-import { RecentBookings } from "@/src/components/dashboard/RecentBookings";
-import { DashboardHeader as WelcomeHeader } from "@/src/components/dashboard/dashboard-header";
-import { DashboardMobileNavigation } from "@/src/components/dashboard/dashboard-mobile-navigation";
-import { DashboardSidebar } from "@/src/components/dashboard/dashboard-sidebar";
-import { StatsOverview as StatsCards } from "@/src/components/dashboard/stats-overview";
+import { RoomAvailability } from "@/components/dashboard/RoomAvailability";
+import { RecentBookings } from "@/components/dashboard/RecentBookings";
+import { DashboardHeader as WelcomeHeader } from "@/components/dashboard/dashboard-header";
+import { DashboardMobileNavigation } from "@/components/dashboard/dashboard-mobile-navigation";
+import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
+import { StatsOverview as StatsCards } from "@/components/dashboard/stats-overview";
 
 export default function Home() {
   return (

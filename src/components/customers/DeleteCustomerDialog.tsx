@@ -1,4 +1,4 @@
-import type { Customer } from "@/src/components/customers/customer-data";
+import type { Customer } from "@/components/customers/customer-data";
 
 type DeleteCustomerDialogProps = {
   customer: Customer;

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { sampleBookings } from "@/src/components/bookings/booking-data";
-import { sampleCustomers } from "@/src/components/customers/customer-data";
+import { sampleBookings } from "@/components/bookings/booking-data";
+import { sampleCustomers } from "@/components/customers/customer-data";
 import type {
   NewPayment,
   PaymentMethod,
-} from "@/src/components/payments/payment-data";
+} from "@/components/payments/payment-data";
 
 type RecordPaymentFormProps = {
   onCancel: () => void;

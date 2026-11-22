@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { type Room, sampleRooms } from "@/src/components/rooms/room-data";
-import { RoomFormDialog } from "@/src/components/rooms/RoomFormDialog";
-import { RoomsPageHeader } from "@/src/components/rooms/rooms-page-header";
-import { RoomsTable } from "@/src/components/rooms/rooms-table";
+import { type Room, sampleRooms } from "@/components/rooms/room-data";
+import { RoomFormDialog } from "@/components/rooms/RoomFormDialog";
+import { RoomsPageHeader } from "@/components/rooms/rooms-page-header";
+import { RoomsTable } from "@/components/rooms/rooms-table";
 
 export function RoomManagement() {
   const [rooms, setRooms] = useState(sampleRooms);

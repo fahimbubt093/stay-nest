@@ -1,8 +1,8 @@
 import { Suspense } from "react";
-import { DashboardMobileNavigation } from "@/src/components/dashboard/dashboard-mobile-navigation";
-import { DashboardSidebar } from "@/src/components/dashboard/dashboard-sidebar";
-import { BookingDetails } from "@/src/components/bookings/BookingDetails";
-import { sampleBookings } from "@/src/components/bookings/booking-data";
+import { DashboardMobileNavigation } from "@/components/dashboard/dashboard-mobile-navigation";
+import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
+import { BookingDetails } from "@/components/bookings/BookingDetails";
+import { sampleBookings } from "@/components/bookings/booking-data";
 
 export function generateStaticParams() {
   return sampleBookings.map((booking) => ({ id: booking.id }));
@@ -18,7 +18,7 @@ async function BookingDetailsContent({
 }
 
 export default function BookingDetailsPage(
-  props: PageProps<"/bookings/[id]">,
+  props: PageProps<"/frontend/bookings/[id]">,
 ) {
   return (
     <div className="flex min-h-screen w-full bg-slate-50 text-slate-900">

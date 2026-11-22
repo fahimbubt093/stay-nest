@@ -1,4 +1,4 @@
-import type { HotelProfile } from "@/src/components/settings/settings-data";
+import type { HotelProfile } from "@/components/settings/settings-data";
 
 type HotelProfileFieldsProps = {
   profile: HotelProfile;

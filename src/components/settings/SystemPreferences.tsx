@@ -2,7 +2,7 @@ import type {
   CurrencyCode,
   SystemPreferences as SystemPreferencesType,
   TimeZone,
-} from "@/src/components/settings/settings-data";
+} from "@/components/settings/settings-data";
 
 type SystemPreferencesProps = {
   preferences: SystemPreferencesType;

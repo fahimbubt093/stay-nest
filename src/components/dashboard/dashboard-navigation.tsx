@@ -4,13 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navigationItems = [
-  { label: "Dashboard", href: "/" },
-  { label: "Rooms", href: "/rooms" },
-  { label: "Bookings", href: "/bookings" },
-  { label: "Customers", href: "/customers" },
-  { label: "Payments", href: "/payments" },
-  { label: "Reports", href: "/reports" },
-  { label: "Settings", href: "/settings" },
+  { label: "Dashboard", href: "/frontend" },
+  { label: "Rooms", href: "/frontend/rooms" },
+  { label: "Bookings", href: "/frontend/bookings" },
+  { label: "Customers", href: "/frontend/customers" },
+  { label: "Payments", href: "/frontend/payments" },
+  { label: "Reports", href: "/frontend/reports" },
+  { label: "Settings", href: "/frontend/settings" },
 ];
 
 type DashboardNavigationProps = {

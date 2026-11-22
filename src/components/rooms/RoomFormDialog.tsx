@@ -1,7 +1,7 @@
 "use client";
 
-import { AddRoomForm } from "@/src/components/rooms/AddRoomForm";
-import type { Room } from "@/src/components/rooms/room-data";
+import { AddRoomForm } from "@/components/rooms/AddRoomForm";
+import type { Room } from "@/components/rooms/room-data";
 
 type RoomFormDialogProps = {
   existingRoomNumbers: string[];

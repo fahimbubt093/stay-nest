@@ -1,11 +1,11 @@
 "use client";
 
-import { NewBookingForm } from "@/src/components/bookings/NewBookingForm";
+import { NewBookingForm } from "@/components/bookings/NewBookingForm";
 import type {
   Booking,
   NewBooking,
-} from "@/src/components/bookings/booking-data";
-import type { Room } from "@/src/components/rooms/room-data";
+} from "@/components/bookings/booking-data";
+import type { Room } from "@/components/rooms/room-data";
 
 type BookingFormDialogProps = {
   initialBooking?: Booking;

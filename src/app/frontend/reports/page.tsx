@@ -1,6 +1,6 @@
-import { DashboardMobileNavigation } from "@/src/components/dashboard/dashboard-mobile-navigation";
-import { DashboardSidebar } from "@/src/components/dashboard/dashboard-sidebar";
-import { ReportsManagement } from "@/src/components/reports/ReportsManagement";
+import { DashboardMobileNavigation } from "@/components/dashboard/dashboard-mobile-navigation";
+import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
+import { ReportsManagement } from "@/components/reports/ReportsManagement";
 
 export default function ReportsPage() {
   return (

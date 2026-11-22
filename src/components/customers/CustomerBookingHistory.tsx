@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { BookingStatusBadge } from "@/src/components/bookings/BookingStatusBadge";
+import { BookingStatusBadge } from "@/components/bookings/BookingStatusBadge";
 import {
   formatBookingDate,
   sampleBookings,
-} from "@/src/components/bookings/booking-data";
-import type { Customer } from "@/src/components/customers/customer-data";
+} from "@/components/bookings/booking-data";
+import type { Customer } from "@/components/customers/customer-data";
 
 type CustomerBookingHistoryProps = {
   customer: Customer;
@@ -69,7 +69,7 @@ export function CustomerBookingHistory({
                   >
                     <Link
                       className="rounded-sm text-blue-700 hover:text-blue-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                      href={`/bookings/${encodeURIComponent(booking.id)}`}
+                      href={`/frontend/bookings/${encodeURIComponent(booking.id)}`}
                     >
                       {booking.id}
                     </Link>

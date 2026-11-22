@@ -11,7 +11,7 @@ import {
   type Customer,
   type NewCustomer,
   sampleCustomers,
-} from "@/src/components/customers/customer-data";
+} from "@/components/customers/customer-data";
 
 type CustomerContextValue = {
   customers: Customer[];

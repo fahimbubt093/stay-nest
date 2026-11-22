@@ -1,6 +1,6 @@
-import { SettingsManagement } from "@/src/components/settings/SettingsManagement";
-import { DashboardMobileNavigation } from "@/src/components/dashboard/dashboard-mobile-navigation";
-import { DashboardSidebar } from "@/src/components/dashboard/dashboard-sidebar";
+import { SettingsManagement } from "@/components/settings/SettingsManagement";
+import { DashboardMobileNavigation } from "@/components/dashboard/dashboard-mobile-navigation";
+import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
 
 export default function SettingsPage() {
   return (

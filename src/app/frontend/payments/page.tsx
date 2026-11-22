@@ -1,6 +1,6 @@
-import { PaymentManagement } from "@/src/components/payments/PaymentManagement";
-import { DashboardMobileNavigation } from "@/src/components/dashboard/dashboard-mobile-navigation";
-import { DashboardSidebar } from "@/src/components/dashboard/dashboard-sidebar";
+import { PaymentManagement } from "@/components/payments/PaymentManagement";
+import { DashboardMobileNavigation } from "@/components/dashboard/dashboard-mobile-navigation";
+import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
 
 export default function PaymentsPage() {
   return (

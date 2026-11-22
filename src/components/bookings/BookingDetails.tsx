@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { BookingFormDialog } from "@/src/components/bookings/BookingFormDialog";
-import { BookingStatusBadge } from "@/src/components/bookings/BookingStatusBadge";
-import { useBookings } from "@/src/components/bookings/BookingProvider";
+import { BookingFormDialog } from "@/components/bookings/BookingFormDialog";
+import { BookingStatusBadge } from "@/components/bookings/BookingStatusBadge";
+import { useBookings } from "@/components/bookings/BookingProvider";
 import {
   formatBookingDate,
   type NewBooking,
-} from "@/src/components/bookings/booking-data";
-import { CancelBookingDialog } from "@/src/components/bookings/CancelBookingDialog";
-import { sampleRooms } from "@/src/components/rooms/room-data";
+} from "@/components/bookings/booking-data";
+import { CancelBookingDialog } from "@/components/bookings/CancelBookingDialog";
+import { sampleRooms } from "@/components/rooms/room-data";
 
 type BookingDetailsProps = {
   bookingId: string;
@@ -41,7 +41,7 @@ export function BookingDetails({ bookingId }: BookingDetailsProps) {
         </h1>
         <Link
           className="mt-5 inline-flex min-h-11 items-center rounded-xl bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          href="/bookings"
+          href="/frontend/bookings"
         >
           Back to Bookings
         </Link>
@@ -67,7 +67,7 @@ export function BookingDetails({ bookingId }: BookingDetailsProps) {
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Link
             className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-            href="/bookings"
+            href="/frontend/bookings"
           >
             Back to Bookings
           </Link>

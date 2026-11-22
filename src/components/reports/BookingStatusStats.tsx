@@ -1,4 +1,4 @@
-import type { BookingStatusCount } from "@/src/components/reports/report-data";
+import type { BookingStatusCount } from "@/components/reports/report-data";
 
 type BookingStatusStatsProps = {
   bookingStatusCounts: BookingStatusCount[];

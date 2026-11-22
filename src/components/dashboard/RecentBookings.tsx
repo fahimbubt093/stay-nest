@@ -1,8 +1,8 @@
 import {
   sampleBookings,
   type Booking,
-} from "@/src/components/dashboard/booking-data";
-import { BookingStatusBadge } from "@/src/components/bookings/BookingStatusBadge";
+} from "@/components/dashboard/booking-data";
+import { BookingStatusBadge } from "@/components/bookings/BookingStatusBadge";
 
 type RecentBookingsProps = {
   bookings?: Booking[];

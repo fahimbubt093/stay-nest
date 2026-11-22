@@ -1,4 +1,4 @@
-import { DashboardNavigation } from "@/src/components/dashboard/dashboard-navigation";
+import { DashboardNavigation } from "@/components/dashboard/dashboard-navigation";
 
 export function DashboardSidebar() {
   return (

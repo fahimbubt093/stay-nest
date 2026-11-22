@@ -5,8 +5,8 @@ import type {
   Booking,
   BookingStatus,
   NewBooking,
-} from "@/src/components/bookings/booking-data";
-import type { Room } from "@/src/components/rooms/room-data";
+} from "@/components/bookings/booking-data";
+import type { Room } from "@/components/rooms/room-data";
 
 type NewBookingFormProps = {
   initialBooking?: Booking;

@@ -1,4 +1,4 @@
-import type { RoomStatus } from "@/src/components/rooms/room-data";
+import type { RoomStatus } from "@/components/rooms/room-data";
 
 type RoomStatusBadgeProps = {
   status: RoomStatus;

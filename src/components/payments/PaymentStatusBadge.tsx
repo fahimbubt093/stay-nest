@@ -1,4 +1,4 @@
-import type { PaymentStatus } from "@/src/components/payments/payment-data";
+import type { PaymentStatus } from "@/components/payments/payment-data";
 
 type PaymentStatusBadgeProps = {
   status: PaymentStatus;

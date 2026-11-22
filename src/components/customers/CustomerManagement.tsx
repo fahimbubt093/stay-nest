@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { AddCustomerForm } from "@/src/components/customers/AddCustomerForm";
-import { CustomerPageHeader } from "@/src/components/customers/CustomerPageHeader";
-import { useCustomers } from "@/src/components/customers/CustomerProvider";
-import { CustomersTable } from "@/src/components/customers/CustomersTable";
+import { AddCustomerForm } from "@/components/customers/AddCustomerForm";
+import { CustomerPageHeader } from "@/components/customers/CustomerPageHeader";
+import { useCustomers } from "@/components/customers/CustomerProvider";
+import { CustomersTable } from "@/components/customers/CustomersTable";
 
 export function CustomerManagement() {
   const { addCustomer, customers } = useCustomers();

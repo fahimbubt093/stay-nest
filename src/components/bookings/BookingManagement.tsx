@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { BookingPageHeader } from "@/src/components/bookings/BookingPageHeader";
-import { BookingFormDialog } from "@/src/components/bookings/BookingFormDialog";
-import { BookingsTable } from "@/src/components/bookings/BookingsTable";
-import { useBookings } from "@/src/components/bookings/BookingProvider";
-import type { NewBooking } from "@/src/components/bookings/booking-data";
-import { sampleRooms } from "@/src/components/rooms/room-data";
+import { BookingPageHeader } from "@/components/bookings/BookingPageHeader";
+import { BookingFormDialog } from "@/components/bookings/BookingFormDialog";
+import { BookingsTable } from "@/components/bookings/BookingsTable";
+import { useBookings } from "@/components/bookings/BookingProvider";
+import type { NewBooking } from "@/components/bookings/booking-data";
+import { sampleRooms } from "@/components/rooms/room-data";
 
 export function BookingManagement() {
   const [isAddingBooking, setIsAddingBooking] = useState(false);
