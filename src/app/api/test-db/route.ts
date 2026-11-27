@@ -14,12 +14,12 @@ export async function GET(): Promise<Response> {
   }
 
   try {
-    const { pool } = await import("@/lib/db");
-    await pool.query("SELECT 1");
+    const { verifyDatabaseConnection } = await import("@/lib/db");
+    verifyDatabaseConnection();
 
     return Response.json({
       success: true,
-      message: "Database connection successful",
+      message: "SQLite database connection successful",
     });
   } catch (error) {
     console.error("Database connection test failed:", error);
@@ -27,7 +27,7 @@ export async function GET(): Promise<Response> {
     return Response.json(
       {
         success: false,
-        message: "Database connection failed",
+        message: "SQLite database connection failed",
       },
       { status: 500 },
     );

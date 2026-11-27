@@ -1,69 +1,48 @@
 import "server-only";
-import {
-  createPool,
-  type Pool,
-  type PoolConnection,
-  type PoolOptions,
-} from "mysql2/promise";
+import Database from "better-sqlite3";
+import { mkdirSync } from "node:fs";
+import { join } from "node:path";
 
-function requiredEnv(name: string): string {
-  const value = process.env[name];
+function createDatabase(): Database.Database {
+  const databaseDirectory = join(process.cwd(), "database");
+  const configuredFilename = process.env.SQLITE_DATABASE_FILENAME?.trim();
 
-  if (!value) {
-    throw new Error(
-      `Missing required MySQL environment variable ${name}. Set it in the project-root .env file.`,
-    );
+  if (
+    configuredFilename &&
+    (configuredFilename === "." ||
+      configuredFilename === ".." ||
+      /[\\/]/.test(configuredFilename))
+  ) {
+    throw new Error("SQLITE_DATABASE_FILENAME must be a file name, not a path.");
   }
 
-  return value;
+  const databaseFilename = configuredFilename || "hotel.sqlite";
+  mkdirSync(databaseDirectory, { recursive: true });
+  const databasePath = join(databaseDirectory, databaseFilename);
+  const connection = new Database(databasePath);
+  connection.pragma("foreign_keys = ON");
+
+  return connection;
 }
-
-function getPort(): number {
-  const value = process.env.DB_PORT;
-  const port = value ? Number(value) : 3306;
-
-  if (!Number.isInteger(port) || port < 1 || port > 65535) {
-    throw new Error("DB_PORT must be a whole number between 1 and 65535.");
-  }
-
-  return port;
-}
-
-const poolOptions: PoolOptions = {
-  host: requiredEnv("DB_HOST"),
-  port: getPort(),
-  user: requiredEnv("DB_USER"),
-  password: process.env.DB_PASSWORD ?? "",
-  database: requiredEnv("DB_NAME"),
-  charset: "utf8mb4",
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-};
 
 declare global {
-  var hotelDbPool: Pool | undefined;
+  var hotelSqliteDatabase: Database.Database | undefined;
 }
 
-export const pool =
-  globalThis.hotelDbPool ?? createPool(poolOptions);
+export const database =
+  globalThis.hotelSqliteDatabase ?? createDatabase();
 
 if (process.env.NODE_ENV !== "production") {
-  globalThis.hotelDbPool = pool;
+  globalThis.hotelSqliteDatabase = database;
 }
 
-export async function verifyDatabaseConnection(): Promise<void> {
-  let connection: PoolConnection | undefined;
-
+export function verifyDatabaseConnection(): void {
   try {
-    connection = await pool.getConnection();
-    await connection.ping();
+    database.prepare("SELECT 1").get();
   } catch (error) {
     throw new Error(
-      "Unable to connect to MySQL. Check the DB_* settings and ensure the database server is running.",
+      "Unable to connect to SQLite. Check SQLITE_DATABASE_FILENAME and file permissions.",
       { cause: error },
     );
-  } finally {
-    connection?.release();
   }
 }
