@@ -1,10 +1,55 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { DateRangeFilter } from "@/components/reports/DateRangeFilter";
 import { UserFormDialog } from "@/components/users/UserFormDialog";
-import type { AuthUser, UpdatedDemoUser } from "@/lib/auth/types";
+import type {
+  AccountStatus,
+  AuthUser,
+  UpdatedDemoUser,
+  UserRole,
+} from "@/lib/auth/types";
+
+const roleOptions: Array<"All roles" | UserRole> = [
+  "All roles",
+  "Admin",
+  "Staff",
+];
+const statusOptions: Array<"All statuses" | AccountStatus> = [
+  "All statuses",
+  "Active",
+  "Inactive",
+];
+const fieldClassName =
+  "h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10";
+
+function getJoinDateKey(createdAt?: string): string | null {
+  if (!createdAt) {
+    return null;
+  }
+
+  const date = new Date(createdAt);
+  return Number.isNaN(date.getTime()) ? null : date.toISOString().slice(0, 10);
+}
+
+function formatJoinDate(createdAt?: string): string {
+  if (!createdAt) {
+    return "Not available";
+  }
+
+  const date = new Date(createdAt);
+  if (Number.isNaN(date.getTime())) {
+    return "Not available";
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    dateStyle: "medium",
+    timeZone: "UTC",
+  }).format(date);
+}
 
 export function UserManagement() {
   const { status, user, users, createUser, updateUser, deleteUser } = useAuth();
@@ -14,10 +59,38 @@ export function UserManagement() {
   const [userToDelete, setUserToDelete] = useState<AuthUser | null>(null);
   const [deleteError, setDeleteError] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [userIdSearch, setUserIdSearch] = useState("");
+  const [roleFilter, setRoleFilter] =
+    useState<(typeof roleOptions)[number]>("All roles");
+  const [statusFilter, setStatusFilter] =
+    useState<(typeof statusOptions)[number]>("All statuses");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  const filteredUsers = useMemo(() => {
+    const query = userIdSearch.trim().toLowerCase();
+
+    return users.filter((listedUser) => {
+      const joinDate = getJoinDateKey(listedUser.createdAt);
+      const matchesId = listedUser.id.toLowerCase().includes(query);
+      const matchesRole =
+        roleFilter === "All roles" || listedUser.role === roleFilter;
+      const matchesStatus =
+        statusFilter === "All statuses" ||
+        listedUser.accountStatus === statusFilter;
+      const matchesJoinDate =
+        (!startDate && !endDate) ||
+        (joinDate !== null &&
+          (!startDate || joinDate >= startDate) &&
+          (!endDate || joinDate <= endDate));
+
+      return matchesId && matchesRole && matchesStatus && matchesJoinDate;
+    });
+  }, [endDate, roleFilter, startDate, statusFilter, userIdSearch, users]);
 
   useEffect(() => {
     if (status === "authenticated" && user?.role !== "Admin") {
-      router.replace("/frontend");
+      router.replace("/dashboard");
     }
   }, [router, status, user?.role]);
 
@@ -95,12 +168,98 @@ export function UserManagement() {
         </button>
       </header>
 
+      <section
+        aria-label="Filter users"
+        className="mb-6 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm sm:p-6"
+      >
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-[minmax(14rem,1.5fr)_minmax(10rem,1fr)_minmax(10rem,1fr)_auto]">
+          <label>
+            <span className="sr-only">Filter by User ID</span>
+            <input
+              className={fieldClassName}
+              onChange={(event) => setUserIdSearch(event.target.value)}
+              placeholder="Filter by User ID"
+              type="search"
+              value={userIdSearch}
+            />
+          </label>
+          <label>
+            <span className="sr-only">Filter users by role</span>
+            <select
+              className={fieldClassName}
+              onChange={(event) => {
+                const selectedRole = roleOptions.find(
+                  (role) => role === event.target.value,
+                );
+                if (selectedRole) {
+                  setRoleFilter(selectedRole);
+                }
+              }}
+              value={roleFilter}
+            >
+              {roleOptions.map((role) => (
+                <option key={role} value={role}>
+                  {role}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span className="sr-only">Filter users by account status</span>
+            <select
+              className={fieldClassName}
+              onChange={(event) => {
+                const selectedStatus = statusOptions.find(
+                  (status) => status === event.target.value,
+                );
+                if (selectedStatus) {
+                  setStatusFilter(selectedStatus);
+                }
+              }}
+              value={statusFilter}
+            >
+              {statusOptions.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button
+            className="min-h-11 rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            onClick={() => {
+              setUserIdSearch("");
+              setRoleFilter("All roles");
+              setStatusFilter("All statuses");
+              setStartDate("");
+              setEndDate("");
+            }}
+            type="button"
+          >
+            Reset Filters
+          </button>
+        </div>
+      </section>
+
+      <DateRangeFilter
+        description="Filter accounts by their actual creation date."
+        endDate={endDate}
+        heading="Join Date"
+        headingId="user-join-date-heading"
+        onEndDateChange={setEndDate}
+        onReset={() => {
+          setStartDate("");
+          setEndDate("");
+        }}
+        onStartDateChange={setStartDate}
+        startDate={startDate}
+      />
+
       <section className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm">
         <div className="border-b border-slate-100 p-5 sm:p-6">
           <h2 className="text-lg font-semibold text-slate-900">All Users</h2>
           <p className="mt-1 text-sm text-slate-500">
-            {users.length} demo {users.length === 1 ? "user" : "users"} saved in
-            this browser
+            {filteredUsers.length} of {users.length} users
           </p>
         </div>
         <div
@@ -109,9 +268,12 @@ export function UserManagement() {
           role="region"
           tabIndex={0}
         >
-          <table className="w-full min-w-[700px] text-left text-sm">
+          <table className="w-full min-w-[1250px] text-left text-sm">
             <thead className="bg-slate-50/80 text-xs uppercase tracking-wider text-slate-500">
               <tr>
+                <th className="px-5 py-3.5 font-semibold sm:px-6" scope="col">
+                  User ID
+                </th>
                 <th className="px-5 py-3.5 font-semibold sm:px-6" scope="col">
                   Full Name
                 </th>
@@ -120,6 +282,12 @@ export function UserManagement() {
                 </th>
                 <th className="px-5 py-3.5 font-semibold sm:px-6" scope="col">
                   Role
+                </th>
+                <th className="px-5 py-3.5 font-semibold sm:px-6" scope="col">
+                  Join Date
+                </th>
+                <th className="px-5 py-3.5 font-semibold sm:px-6" scope="col">
+                  Account Status
                 </th>
                 <th
                   className="px-5 py-3.5 text-right font-semibold sm:px-6"
@@ -130,19 +298,22 @@ export function UserManagement() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {users.map((listedUser) => (
+              {filteredUsers.length > 0 ? filteredUsers.map((listedUser) => (
                 <tr className="text-slate-600" key={listedUser.id}>
                   <th
                     className="whitespace-nowrap px-5 py-4 text-left font-medium text-slate-800 sm:px-6"
                     scope="row"
                   >
+                    {listedUser.id}
+                  </th>
+                  <td className="whitespace-nowrap px-5 py-4 font-medium text-slate-800 sm:px-6">
                     {listedUser.fullName}
                     {listedUser.isDefaultAdmin && (
                       <span className="ml-2 rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
                         Default
                       </span>
                     )}
-                  </th>
+                  </td>
                   <td className="whitespace-nowrap px-5 py-4 sm:px-6">
                     {listedUser.email}
                   </td>
@@ -151,8 +322,28 @@ export function UserManagement() {
                       {listedUser.role}
                     </span>
                   </td>
+                  <td className="whitespace-nowrap px-5 py-4 sm:px-6">
+                    {formatJoinDate(listedUser.createdAt)}
+                  </td>
                   <td className="px-5 py-4 sm:px-6">
-                    <div className="flex items-center justify-end gap-2">
+                    <span
+                      className={
+                        listedUser.accountStatus === "Active"
+                          ? "rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700"
+                          : "rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600"
+                      }
+                    >
+                      {listedUser.accountStatus}
+                    </span>
+                  </td>
+                  <td className="px-5 py-4 sm:px-6">
+                    <div className="flex items-center justify-end gap-1">
+                      <Link
+                        className="inline-flex min-h-9 items-center justify-center rounded-lg border border-blue-100 bg-blue-50 px-3 text-sm font-semibold text-blue-700 transition hover:border-blue-200 hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                        href={`/dashboard/users/${encodeURIComponent(listedUser.id)}`}
+                      >
+                        View Details
+                      </Link>
                       <button
                         aria-label={`Edit ${listedUser.fullName}`}
                         className="min-h-9 rounded-lg px-3 text-sm font-semibold text-blue-700 transition hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
@@ -177,7 +368,16 @@ export function UserManagement() {
                     </div>
                   </td>
                 </tr>
-              ))}
+              )) : (
+                <tr>
+                  <td
+                    className="px-5 py-12 text-center text-sm text-slate-500 sm:px-6"
+                    colSpan={7}
+                  >
+                    No users match the selected filters.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

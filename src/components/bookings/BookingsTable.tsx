@@ -146,7 +146,7 @@ export function BookingsTable({ bookings }: BookingsTableProps) {
                   >
                     <Link
                       className="rounded-sm text-blue-700 hover:text-blue-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                      href={`/frontend/bookings/${encodeURIComponent(booking.id)}`}
+                      href={`/dashboard/bookings/${encodeURIComponent(booking.id)}`}
                     >
                       {booking.id}
                     </Link>

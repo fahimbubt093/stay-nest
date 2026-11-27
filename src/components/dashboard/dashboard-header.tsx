@@ -38,7 +38,7 @@ export function DashboardHeader() {
           </Suspense>
         </div>
         <Link
-          href="/frontend/bookings"
+          href="/dashboard/bookings"
           className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm shadow-blue-900/15 transition hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 sm:w-auto"
         >
           + New Booking

@@ -147,7 +147,7 @@ export function RoomsTable({ rooms, onDelete, onEdit }: RoomsTableProps) {
                   >
                     <Link
                       className="rounded-sm text-blue-700 hover:text-blue-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                      href={`/frontend/rooms/${encodeURIComponent(room.roomNumber)}`}
+                      href={`/dashboard/rooms/${encodeURIComponent(room.roomNumber)}`}
                     >
                       {room.roomNumber}
                     </Link>
@@ -169,7 +169,7 @@ export function RoomsTable({ rooms, onDelete, onEdit }: RoomsTableProps) {
                       <Link
                         aria-label={`View room ${room.roomNumber}`}
                         className="rounded-lg px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                        href={`/frontend/rooms/${encodeURIComponent(room.roomNumber)}`}
+                        href={`/dashboard/rooms/${encodeURIComponent(room.roomNumber)}`}
                       >
                         View
                       </Link>

@@ -48,6 +48,13 @@ function isStoredDemoUser(value: unknown): value is StoredDemoUser {
     typeof value.fullName === "string" &&
     typeof value.email === "string" &&
     (value.role === "Admin" || value.role === "Staff") &&
+    (value.createdAt === undefined || typeof value.createdAt === "string") &&
+    (value.phone === undefined || typeof value.phone === "string") &&
+    (value.profileImageUrl === undefined ||
+      typeof value.profileImageUrl === "string") &&
+    (value.accountStatus === undefined ||
+      value.accountStatus === "Active" ||
+      value.accountStatus === "Inactive") &&
     typeof value.passwordSalt === "string" &&
     typeof value.passwordHash === "string"
   );

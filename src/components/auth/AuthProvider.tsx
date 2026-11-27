@@ -10,6 +10,7 @@ import {
 } from "react";
 import { authService } from "@/lib/auth/auth-service";
 import type {
+  AccountStatus,
   AuthSnapshot,
   AuthUser,
   NewDemoUser,
@@ -28,6 +29,10 @@ type AuthContextValue = {
   logout: () => Promise<void>;
   createUser: (input: NewDemoUser) => Promise<void>;
   updateUser: (id: string, input: UpdatedDemoUser) => Promise<void>;
+  changeAccountStatus: (
+    id: string,
+    accountStatus: AccountStatus,
+  ) => Promise<void>;
   deleteUser: (id: string) => Promise<void>;
 };
 
@@ -144,6 +149,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [applySnapshot],
   );
 
+  const changeAccountStatus = useCallback(
+    async (id: string, accountStatus: AccountStatus) => {
+      applySnapshot(await authService.changeAccountStatus(id, accountStatus));
+    },
+    [applySnapshot],
+  );
+
   const deleteUser = useCallback(
     async (id: string) => {
       applySnapshot(await authService.deleteUser(id));
@@ -163,6 +175,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         logout,
         createUser,
         updateUser,
+        changeAccountStatus,
         deleteUser,
       }}
     >

@@ -6,13 +6,13 @@ import { useState } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
 
 const navigationItems = [
-  { label: "Dashboard", href: "/frontend" },
-  { label: "Rooms", href: "/frontend/rooms" },
-  { label: "Bookings", href: "/frontend/bookings" },
-  { label: "Customers", href: "/frontend/customers" },
-  { label: "Payments", href: "/frontend/payments" },
-  { label: "Reports", href: "/frontend/reports" },
-  { label: "Settings", href: "/frontend/settings" },
+  { label: "Dashboard", href: "/dashboard" },
+  { label: "Rooms", href: "/dashboard/rooms" },
+  { label: "Bookings", href: "/dashboard/bookings" },
+  { label: "Customers", href: "/dashboard/customers" },
+  { label: "Payments", href: "/dashboard/payments" },
+  { label: "Reports", href: "/dashboard/reports" },
+  { label: "Settings", href: "/dashboard/settings" },
 ];
 
 type DashboardNavigationProps = {
@@ -30,7 +30,7 @@ export function DashboardNavigation({
     user?.role === "Admin"
       ? [
           ...navigationItems,
-          { label: "Users", href: "/frontend/users" },
+          { label: "Users", href: "/dashboard/users" },
         ]
       : navigationItems;
 

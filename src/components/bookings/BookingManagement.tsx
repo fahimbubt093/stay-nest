@@ -6,11 +6,10 @@ import { BookingFormDialog } from "@/components/bookings/BookingFormDialog";
 import { BookingsTable } from "@/components/bookings/BookingsTable";
 import { useBookings } from "@/components/bookings/BookingProvider";
 import type { NewBooking } from "@/components/bookings/booking-data";
-import { sampleRooms } from "@/components/rooms/room-data";
 
 export function BookingManagement() {
   const [isAddingBooking, setIsAddingBooking] = useState(false);
-  const { addBooking, bookings } = useBookings();
+  const { addBooking, bookings, rooms } = useBookings();
 
   return (
     <>
@@ -27,7 +26,7 @@ export function BookingManagement() {
             addBooking(newBooking);
             setIsAddingBooking(false);
           }}
-          rooms={sampleRooms}
+          rooms={rooms}
         />
       )}
     </>

@@ -25,6 +25,10 @@ export function UserFormDialog({
 }: UserFormDialogProps) {
   const [fullName, setFullName] = useState(initialUser?.fullName ?? "");
   const [email, setEmail] = useState(initialUser?.email ?? "");
+  const [phone, setPhone] = useState(initialUser?.phone ?? "");
+  const [profileImageUrl, setProfileImageUrl] = useState(
+    initialUser?.profileImageUrl ?? "",
+  );
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState<UserRole>(initialUser?.role ?? "Staff");
@@ -64,6 +68,10 @@ export function UserFormDialog({
         fullName: fullName.trim(),
         email: email.trim(),
         role,
+        ...(phone.trim() ? { phone: phone.trim() } : {}),
+        ...(profileImageUrl.trim()
+          ? { profileImageUrl: profileImageUrl.trim() }
+          : {}),
         ...(password ? { password } : {}),
       });
     } catch (error) {
@@ -132,6 +140,39 @@ export function UserFormDialog({
                 required
                 type="email"
                 value={email}
+              />
+            </div>
+            <div>
+              <label
+                className="text-sm font-medium text-slate-700"
+                htmlFor="user-phone"
+              >
+                Phone Number (optional)
+              </label>
+              <input
+                autoComplete="tel"
+                className={fieldClassName}
+                id="user-phone"
+                onChange={(event) => setPhone(event.target.value)}
+                type="tel"
+                value={phone}
+              />
+            </div>
+            <div>
+              <label
+                className="text-sm font-medium text-slate-700"
+                htmlFor="user-profile-image-url"
+              >
+                Profile Image URL (optional)
+              </label>
+              <input
+                autoComplete="url"
+                className={fieldClassName}
+                id="user-profile-image-url"
+                onChange={(event) => setProfileImageUrl(event.target.value)}
+                placeholder="https://example.com/image.jpg"
+                type="url"
+                value={profileImageUrl}
               />
             </div>
             <div>

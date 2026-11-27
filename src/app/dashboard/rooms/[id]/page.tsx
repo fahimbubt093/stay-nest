@@ -25,7 +25,7 @@ async function RoomDetailsContent({
 }
 
 export default function RoomDetailsPage(
-  props: PageProps<"/frontend/rooms/[id]">,
+  props: PageProps<"/dashboard/rooms/[id]">,
 ) {
   return (
     <div className="flex min-h-screen w-full bg-slate-50 text-slate-900">

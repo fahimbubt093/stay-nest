@@ -15,7 +15,7 @@ export function RoomNotFound() {
         </p>
         <Link
           className="mt-6 inline-flex min-h-11 items-center justify-center rounded-xl bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm shadow-blue-900/15 transition hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          href="/frontend/rooms"
+          href="/dashboard/rooms"
         >
           Back to Rooms
         </Link>

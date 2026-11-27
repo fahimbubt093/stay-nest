@@ -165,7 +165,7 @@ export function CustomersTable({ customers }: CustomersTableProps) {
                         <div className="flex items-center justify-end gap-2">
                           <Link
                             className="inline-flex min-h-9 items-center justify-center rounded-lg border border-blue-100 bg-blue-50 px-3 text-sm font-semibold text-blue-700 transition hover:border-blue-200 hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                            href={`/frontend/customers/${encodeURIComponent(customer.id)}`}
+                            href={`/dashboard/customers/${encodeURIComponent(customer.id)}`}
                           >
                             View Details
                           </Link>

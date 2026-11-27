@@ -21,7 +21,7 @@ export function LoginScreen() {
 
   useEffect(() => {
     if (status === "authenticated") {
-      router.replace("/frontend");
+      router.replace("/dashboard");
     }
   }, [router, status]);
 
@@ -39,7 +39,7 @@ export function LoginScreen() {
     setIsSubmitting(true);
     try {
       await login(normalizedEmail, password);
-      router.replace("/frontend");
+      router.replace("/dashboard");
     } catch (loginError) {
       setFormError(
         loginError instanceof AuthError &&

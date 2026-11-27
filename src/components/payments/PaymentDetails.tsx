@@ -24,7 +24,7 @@ export function PaymentDetails({ paymentId }: PaymentDetailsProps) {
         </h1>
         <Link
           className="mt-5 inline-flex min-h-11 items-center rounded-xl bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          href="/frontend/payments"
+          href="/dashboard/payments"
         >
           Back to Payments
         </Link>
@@ -48,7 +48,7 @@ export function PaymentDetails({ paymentId }: PaymentDetailsProps) {
         </div>
         <Link
           className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          href="/frontend/payments"
+          href="/dashboard/payments"
         >
           Back to Payments
         </Link>
@@ -85,7 +85,7 @@ export function PaymentDetails({ paymentId }: PaymentDetailsProps) {
             </dd>
             <Link
               className="mt-2 inline-flex text-sm font-semibold text-blue-700 hover:text-blue-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-              href={`/frontend/customers/${encodeURIComponent(payment.customerId)}`}
+              href={`/dashboard/customers/${encodeURIComponent(payment.customerId)}`}
             >
               View Customer
             </Link>
@@ -97,7 +97,7 @@ export function PaymentDetails({ paymentId }: PaymentDetailsProps) {
             </dd>
             <Link
               className="mt-2 inline-flex text-sm font-semibold text-blue-700 hover:text-blue-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-              href={`/frontend/bookings/${encodeURIComponent(payment.bookingId)}`}
+              href={`/dashboard/bookings/${encodeURIComponent(payment.bookingId)}`}
             >
               View Booking
             </Link>

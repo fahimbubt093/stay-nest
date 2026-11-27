@@ -1,4 +1,5 @@
 import {
+  type AccountStatus,
   DEFAULT_ADMIN_ID,
   type AuthSession,
   type AuthSnapshot,
@@ -23,6 +24,7 @@ const DEFAULT_ADMIN: AuthUser = {
   fullName: "Stay Nest Admin",
   email: DEFAULT_ADMIN_CREDENTIALS.email,
   role: "Admin",
+  accountStatus: "Active",
   isDefaultAdmin: true,
 };
 const SESSION_LIFETIME_MS = 15 * 24 * 60 * 60 * 1000;
@@ -53,6 +55,10 @@ function toPublicUser(user: StoredDemoUser): AuthUser {
     fullName: user.fullName,
     email: user.email,
     role: user.role,
+    createdAt: user.createdAt,
+    phone: user.phone,
+    profileImageUrl: user.profileImageUrl,
+    accountStatus: user.accountStatus ?? "Active",
     isDefaultAdmin: false,
   };
 }
@@ -73,9 +79,19 @@ function validateUserFields(
   fullName: string,
   email: string,
   role: UserRole,
-): { fullName: string; email: string; role: UserRole } {
+  phone?: string,
+  profileImageUrl?: string,
+): {
+  fullName: string;
+  email: string;
+  role: UserRole;
+  phone?: string;
+  profileImageUrl?: string;
+} {
   const normalizedName = fullName.trim();
   const normalizedEmail = normalizeEmail(email);
+  const normalizedPhone = phone?.trim() || undefined;
+  const normalizedProfileImageUrl = profileImageUrl?.trim() || undefined;
 
   if (!normalizedName) {
     throw new AuthError("invalid_input", "Enter the user's full name.");
@@ -86,8 +102,26 @@ function validateUserFields(
   if (!isUserRole(role)) {
     throw new AuthError("invalid_input", "Select Admin or Staff as the role.");
   }
+  if (normalizedProfileImageUrl) {
+    let parsedUrl: URL;
+    try {
+      parsedUrl = new URL(normalizedProfileImageUrl);
+    } catch {
+      throw new AuthError("invalid_input", "Enter a valid profile image URL.");
+    }
 
-  return { fullName: normalizedName, email: normalizedEmail, role };
+    if (parsedUrl.protocol !== "https:" && parsedUrl.protocol !== "http:") {
+      throw new AuthError("invalid_input", "Enter a valid profile image URL.");
+    }
+  }
+
+  return {
+    fullName: normalizedName,
+    email: normalizedEmail,
+    role,
+    phone: normalizedPhone,
+    profileImageUrl: normalizedProfileImageUrl,
+  };
 }
 
 function requireCrypto(): Crypto {
@@ -250,7 +284,13 @@ export function createAuthService(repository: AuthRepository) {
     },
 
     async createUser(input: NewDemoUser): Promise<AuthSnapshot> {
-      const fields = validateUserFields(input.fullName, input.email, input.role);
+      const fields = validateUserFields(
+        input.fullName,
+        input.email,
+        input.role,
+        input.phone,
+        input.profileImageUrl,
+      );
       assertPassword(input.password);
 
       const storedUsers = await repository.loadUsers();
@@ -268,6 +308,8 @@ export function createAuthService(repository: AuthRepository) {
       const newUser: StoredDemoUser = {
         id: createUserId(),
         ...fields,
+        createdAt: new Date().toISOString(),
+        accountStatus: "Active",
         passwordSalt,
         passwordHash: await hashPassword(input.password, passwordSalt),
       };
@@ -287,7 +329,13 @@ export function createAuthService(repository: AuthRepository) {
         );
       }
 
-      const fields = validateUserFields(input.fullName, input.email, input.role);
+      const fields = validateUserFields(
+        input.fullName,
+        input.email,
+        input.role,
+        input.phone,
+        input.profileImageUrl,
+      );
       if (input.password) {
         assertPassword(input.password);
       }
@@ -321,6 +369,35 @@ export function createAuthService(repository: AuthRepository) {
 
       await repository.saveUsers(
         storedUsers.map((user) => (user.id === userId ? updatedUser : user)),
+      );
+      return getSnapshot();
+    },
+
+    async changeAccountStatus(
+      userId: string,
+      accountStatus: AccountStatus,
+    ): Promise<AuthSnapshot> {
+      if (userId === DEFAULT_ADMIN.id) {
+        throw new AuthError(
+          "default_user_protected",
+          "The default demo admin account cannot be deactivated.",
+        );
+      }
+
+      if (accountStatus !== "Active" && accountStatus !== "Inactive") {
+        throw new AuthError("invalid_input", "Select a valid account status.");
+      }
+
+      const storedUsers = await repository.loadUsers();
+      const existingUser = storedUsers.find((user) => user.id === userId);
+      if (!existingUser) {
+        throw new AuthError("user_not_found", "This demo user no longer exists.");
+      }
+
+      await repository.saveUsers(
+        storedUsers.map((user) =>
+          user.id === userId ? { ...user, accountStatus } : user,
+        ),
       );
       return getSnapshot();
     },

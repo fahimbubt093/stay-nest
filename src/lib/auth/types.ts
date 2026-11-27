@@ -1,10 +1,15 @@
 export type UserRole = "Admin" | "Staff";
+export type AccountStatus = "Active" | "Inactive";
 
 export type AuthUser = {
   id: string;
   fullName: string;
   email: string;
   role: UserRole;
+  createdAt?: string;
+  phone?: string;
+  profileImageUrl?: string;
+  accountStatus: AccountStatus;
   isDefaultAdmin: boolean;
 };
 
@@ -13,6 +18,10 @@ export type StoredDemoUser = {
   fullName: string;
   email: string;
   role: UserRole;
+  createdAt?: string;
+  phone?: string;
+  profileImageUrl?: string;
+  accountStatus?: AccountStatus;
   passwordSalt: string;
   passwordHash: string;
 };
@@ -33,6 +42,8 @@ export type NewDemoUser = {
   email: string;
   password: string;
   role: UserRole;
+  phone?: string;
+  profileImageUrl?: string;
 };
 
 export type UpdatedDemoUser = {
@@ -40,6 +51,8 @@ export type UpdatedDemoUser = {
   email: string;
   password?: string;
   role: UserRole;
+  phone?: string;
+  profileImageUrl?: string;
 };
 
 export const DEFAULT_ADMIN_ID = "default-admin";

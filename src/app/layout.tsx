@@ -9,9 +9,9 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "HotelPro | Hotel Management",
+  title: "HotelPro Downtown | A comfortable stay in Dhaka",
   description:
-    "Manage hotel rooms, bookings, customers, payments, and reports.",
+    "Discover comfortable rooms and thoughtful hospitality at HotelPro Downtown in Dhaka.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

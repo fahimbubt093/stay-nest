@@ -4,6 +4,9 @@ type DateRangeFilterProps = {
   onStartDateChange: (date: string) => void;
   onEndDateChange: (date: string) => void;
   onReset: () => void;
+  heading?: string;
+  description?: string;
+  headingId?: string;
 };
 
 const fieldClassName =
@@ -15,22 +18,25 @@ export function DateRangeFilter({
   onStartDateChange,
   onEndDateChange,
   onReset,
+  heading = "Date Range",
+  description = "Filter report metrics by booking and revenue dates.",
+  headingId = "report-date-range-heading",
 }: DateRangeFilterProps) {
   return (
     <section
-      aria-labelledby="report-date-range-heading"
+      aria-labelledby={headingId}
       className="mb-6 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm sm:p-6"
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h2
             className="text-base font-semibold text-slate-900"
-            id="report-date-range-heading"
+            id={headingId}
           >
-            Date Range
+            {heading}
           </h2>
           <p className="mt-1 text-sm text-slate-500">
-            Filter report metrics by booking and revenue dates.
+            {description}
           </p>
         </div>
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-[minmax(10rem,1fr)_minmax(10rem,1fr)_auto] lg:items-end">

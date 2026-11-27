@@ -10,14 +10,13 @@ import {
   type NewBooking,
 } from "@/components/bookings/booking-data";
 import { CancelBookingDialog } from "@/components/bookings/CancelBookingDialog";
-import { sampleRooms } from "@/components/rooms/room-data";
 
 type BookingDetailsProps = {
   bookingId: string;
 };
 
 export function BookingDetails({ bookingId }: BookingDetailsProps) {
-  const { bookings, cancelBooking, updateBooking } = useBookings();
+  const { bookings, cancelBooking, rooms, updateBooking } = useBookings();
   const [isEditing, setIsEditing] = useState(false);
   const [isConfirmingCancellation, setIsConfirmingCancellation] =
     useState(false);
@@ -41,7 +40,7 @@ export function BookingDetails({ bookingId }: BookingDetailsProps) {
         </h1>
         <Link
           className="mt-5 inline-flex min-h-11 items-center rounded-xl bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          href="/frontend/bookings"
+          href="/dashboard/bookings"
         >
           Back to Bookings
         </Link>
@@ -67,7 +66,7 @@ export function BookingDetails({ bookingId }: BookingDetailsProps) {
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Link
             className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-            href="/frontend/bookings"
+            href="/dashboard/bookings"
           >
             Back to Bookings
           </Link>
@@ -169,7 +168,7 @@ export function BookingDetails({ bookingId }: BookingDetailsProps) {
           initialBooking={booking}
           onCancel={() => setIsEditing(false)}
           onSave={saveBooking}
-          rooms={sampleRooms}
+          rooms={rooms}
         />
       )}
 

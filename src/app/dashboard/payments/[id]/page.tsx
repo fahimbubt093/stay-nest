@@ -1,24 +1,24 @@
 import { Suspense } from "react";
+import { PaymentDetails } from "@/components/payments/PaymentDetails";
+import { samplePayments } from "@/components/payments/payment-data";
 import { DashboardMobileNavigation } from "@/components/dashboard/dashboard-mobile-navigation";
 import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
-import { BookingDetails } from "@/components/bookings/BookingDetails";
-import { sampleBookings } from "@/components/bookings/booking-data";
 
 export function generateStaticParams() {
-  return sampleBookings.map((booking) => ({ id: booking.id }));
+  return samplePayments.map((payment) => ({ id: payment.id }));
 }
 
-async function BookingDetailsContent({
+async function PaymentDetailsContent({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  return <BookingDetails key={id} bookingId={id} />;
+  return <PaymentDetails paymentId={id} />;
 }
 
-export default function BookingDetailsPage(
-  props: PageProps<"/frontend/bookings/[id]">,
+export default function PaymentDetailsPage(
+  props: PageProps<"/dashboard/payments/[id]">,
 ) {
   return (
     <div className="flex min-h-screen w-full bg-slate-50 text-slate-900">
@@ -29,11 +29,11 @@ export default function BookingDetailsPage(
           <Suspense
             fallback={
               <div className="rounded-2xl border border-slate-100 bg-white p-6 text-sm text-slate-500 shadow-sm">
-                Loading booking details...
+                Loading payment details...
               </div>
             }
           >
-            <BookingDetailsContent params={props.params} />
+            <PaymentDetailsContent params={props.params} />
           </Suspense>
         </div>
       </main>
